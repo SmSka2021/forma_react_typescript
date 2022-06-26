@@ -1,15 +1,15 @@
 import * as React from "react";
 import { Form } from "./Form";
 import { Field } from "./Field";
-import { IFields } from './form';
 import { required, isEmail, maxLength } from './validate';
+import { IFields } from './Interface';
 
 
 export const ContactUsForm: React.FunctionComponent = () => {
   const fields: IFields = {
     name: {
       id: "name",
-      label: "Name", 
+      label: "Full Name", 
        validation: { rule: required }
     },
     email: {
@@ -28,7 +28,7 @@ export const ContactUsForm: React.FunctionComponent = () => {
       id: "notes",
       label: "Notes",
       editor: "multilinetextbox",
-      validation: { rule: maxLength, args: 1000 }
+      validation: { rule: maxLength, args: 300 }
     }
   };
   return (
@@ -37,7 +37,7 @@ export const ContactUsForm: React.FunctionComponent = () => {
       fields={fields}
       render={() => (
         <React.Fragment>
-          <div className="alert" role="alert">
+          <div className="alert" >
             Enter the information below and we'll get back to you as soon as we
             can.
           </div>
@@ -51,11 +51,6 @@ export const ContactUsForm: React.FunctionComponent = () => {
   );
 };
 /* <Field id="name" label="Name" />
-          <Field id="email" label="Email" />
-          <Field
-            id="reason"
-            label="Reason"
-            editor="dropdown"
-            options={["", "Marketing", "Support", "Feedback", "Jobs"]}
-          />
-          <Field id="notes" label="Notes" editor="multilinetextbox" />*/
+    <Field id="email" label="Email" />
+     <Field id="reason"     label="Reason"    editor="dropdown"  options={["", "Marketing", "Support", "Feedback", "Jobs"]  />
+   <Field id="notes" label="Notes" editor="multilinetextbox" />*/

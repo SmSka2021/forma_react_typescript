@@ -1,46 +1,14 @@
 import * as React from "react";
-import { IFieldProps } from './Field';
+
+import { IFormProps,IErrors,  IValues, IFormState, IFormContext, } from './Interface';
 
 
 
 
-export interface IFields {
-  [key: string]: IFieldProps;
-}
 
-export interface IFormContext
-  extends IFormState {
-  /* Function that allows values in the values state to be set */
-  setValues: (values: IValues) => void;
-  
-  /* Function that validates a field */
-  validate: (fieldName: string) => void;
-}
+
 export const FormContext = React.createContext<IFormContext|undefined>(undefined);
 
-
-interface IFormProps {
-  /* The http path that the form will be posted to */
-  action: string;
-   /* The props for all the fields on the form */
-   fields: IFields;
-  render: () => React.ReactNode;
-}
-
-export interface IValues {
-  /* Key value pairs for all the field values with key being the field name */
-  [key: string]: any;
-}
-
-export interface IErrors {
- [key: string]: string;   
-}
-
-export interface IFormState {
- values: IValues;  
-  errors: IErrors; 
- submitSuccess?: boolean;  
-}
 
 
 export class Form extends React.Component<IFormProps, IFormState> {
@@ -60,6 +28,7 @@ export class Form extends React.Component<IFormProps, IFormState> {
  * param {IValues} values - The new field values
  */
 private setValues = (values: IValues) => {
+  
   this.setState({ values: { ...this.state.values, ...values } });
  };
   /**

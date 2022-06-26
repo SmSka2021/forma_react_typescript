@@ -1,5 +1,5 @@
 
-import { IValues } from './form';
+import { IValues } from './Form';
 
 
 
