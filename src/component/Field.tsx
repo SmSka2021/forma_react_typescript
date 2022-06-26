@@ -30,7 +30,8 @@ const getEditorStyle = (errors: IErrors): any =>
           style={getEditorStyle(context.errors)}
           onChange={
             (e: React.FormEvent<HTMLInputElement>) =>
-            id=== "name"?  context.setValues({ [id]: e.currentTarget.value.toUpperCase() }) :  context.setValues({ [id]: e.currentTarget.value })
+            id=== "name"?  context.setValues({ [id]: e.currentTarget.value.toUpperCase() }) :  context.setValues({ [id]: e.currentTarget.value
+             })
        
           }
           onBlur={() => context.validate(id)}

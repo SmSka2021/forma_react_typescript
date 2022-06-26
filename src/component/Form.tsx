@@ -186,13 +186,34 @@ private setValues = (values: IValues) => {
  * param {string} fieldName - The field to validate
  * returns {string} - The error message
  */
- export const required = (values: IValues, fieldName: string): string =>
- values[fieldName] === undefined ||
+ export const required = (values: IValues, fieldName: string): string => {
+  if( values[fieldName] === undefined ||
  values[fieldName] === null ||
- values[fieldName] === ""
-   ? "This must be populated"
-   : "";
+ values[fieldName] === ""){
+  return "This must be filled"
+}
+let lengthValue:number =  values[fieldName].split(' ').length
 
+if(lengthValue !== 2){
+  return "Enter first and last name"
+}
+let lengthValue0:number = values[fieldName].split(' ')[0].length;
+let lengthValue1:number = values[fieldName].split(' ')[1].length;
+if(lengthValue0 < 3 || lengthValue0 > 30 || lengthValue1 < 3 || lengthValue1 > 30 ) {
+  return " This is too short or too long name"
+}
+/*
+if(values[fieldName].split(' ').filter(el => el.length < 3 || el.length > 30)) {
+  return "check first and last name"
+}*/
+if(values[fieldName].search(/^[a-zA-Z]+\s+[a-zA-Z]*$/ )) {
+ return "This must be in a valid  format"
+}
+return ""  
+
+ // value.search(/[A-Za-z]+(\s+[A-Za-z]+)?/gi) !== -1. ? true : false : '' } }
+
+   }
 /**
 * Validates whether a field is a valid email
 * param {IValues} values - All the field values in the form

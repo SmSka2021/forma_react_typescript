@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Form } from "./Form";
 import { Field } from "./Field";
-import { required, isEmail, maxLength } from './validate';
+import { required, isEmail, maxLength } from './Form';
 import { IFields } from './Interface';
 
 
