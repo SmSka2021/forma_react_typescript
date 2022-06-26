@@ -1,0 +1,29 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: rgb(9, 9, 41);
+    }
+    .alert{
+        font-size:20px;
+        font-weight: 700;  
+        color: rgb(9, 9, 41);
+    }
+    .form-group{
+width: 80%;
+margin: 1rem auto;
+border: 1px solid  red;
+
+ label{
+    font-size:20px;
+    font-weight: 700;
+ }
+    }
+    .form-control {
+        width: 90%;
+        height: 40px;
+        font-weight: 1rem;
+        border: 1px solid blue;
+        border-radius: 5px;
+    }
