@@ -1,11 +1,12 @@
 import * as React from "react";
 import { Form, } from "./Form";
 import { Field } from "./Field";
-import { required, isEmail, maxLength, isTel} from './Form';
+import { required, isEmail, maxLength, isTel} from './validation';
 import { IFields } from './Interface';
 
 
-export const ContactUsForm: React.FunctionComponent = () => {
+
+export const ContactUsForm: React.FunctionComponent = () => { 
   const fields: IFields = {
     name: {
       id: "name",
@@ -26,12 +27,10 @@ export const ContactUsForm: React.FunctionComponent = () => {
       placeholderTel: "+7 XXX XX XX XX",
       validation: { rule: isTel }
     },
-    reason: {
-      id: "reason",
-      label: "Reason",
-      editor: "dropdown",
-      options: ["", "Marketing", "Support", "Feedback", "Jobs"],
-    //  validation: { rule: required }
+    birthday:{
+      id: "birthday",
+      label: "Birthday",
+      editor: "birthday"   
     },
     notes: {
       id: "notes",
@@ -42,25 +41,19 @@ export const ContactUsForm: React.FunctionComponent = () => {
   };
   return (
     <Form
-      action="http://localhost:4351/api/contactus"
+      action='https://jsonplaceholder.typicode.com/posts'  //submitSuccess === true
+         /*  "http://localhost:5000/api/contactus"   */    //submitSuccess === false
       fields={fields}
       render={() => (
         <React.Fragment>
-          <div className="alert" >
-            Enter the information below and we'll get back to you as soon as we
-            can.
-          </div>
+          <h2> Enter the information below <br/> and we'll get back to you as soon as we can.</h2>
           <Field {...fields.name} />
           <Field {...fields.email} />
-          <Field {...fields.tel} />
-          <Field {...fields.reason} />
+          <Field {...fields.tel} /> 
+          <Field {...fields.birthday} />
           <Field {...fields.notes} />
         </React.Fragment>
       )}
     />
   );
 };
-/* <Field id="name" label="Name" />
-    <Field id="email" label="Email" />
-     <Field id="reason"     label="Reason"    editor="dropdown"  options={["", "Marketing", "Support", "Feedback", "Jobs"]  />
-   <Field id="notes" label="Notes" editor="multilinetextbox" />*/
