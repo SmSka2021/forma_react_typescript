@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Form } from "./Form";
+import { Form, } from "./Form";
 import { Field } from "./Field";
-import { required, isEmail, maxLength } from './Form';
+import { required, isEmail, maxLength, isTel} from './Form';
 import { IFields } from './Interface';
 
 
@@ -10,25 +10,34 @@ export const ContactUsForm: React.FunctionComponent = () => {
     name: {
       id: "name",
       label: "Full Name", 
+      editor: "textbox",
        validation: { rule: required }
     },
     email: {
       id: "email",
       label: "Email",
+      editor: "textbox",
       validation: { rule: isEmail }
+    },
+    tel: {
+      id: "tel",
+      label: "Phone number",
+      editor: "telbox",
+      placeholderTel: "+7 XXX XX XX XX",
+      validation: { rule: isTel }
     },
     reason: {
       id: "reason",
       label: "Reason",
       editor: "dropdown",
       options: ["", "Marketing", "Support", "Feedback", "Jobs"],
-      validation: { rule: required }
+    //  validation: { rule: required }
     },
     notes: {
       id: "notes",
       label: "Notes",
       editor: "multilinetextbox",
-      validation: { rule: maxLength, minLength: 10, args: 300 }
+      validation: { rule:  maxLength, minLength: 10, args: 300 }
     }
   };
   return (
@@ -43,6 +52,7 @@ export const ContactUsForm: React.FunctionComponent = () => {
           </div>
           <Field {...fields.name} />
           <Field {...fields.email} />
+          <Field {...fields.tel} />
           <Field {...fields.reason} />
           <Field {...fields.notes} />
         </React.Fragment>

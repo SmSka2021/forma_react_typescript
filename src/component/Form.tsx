@@ -14,12 +14,13 @@ export const FormContext = React.createContext<IFormContext|undefined>(undefined
 export class Form extends React.Component<IFormProps, IFormState> {
   constructor(props: IFormProps) {
     super(props);
-
+    const placeholderTel:  string ="+7 XXX XX XX XX";
     const errors: IErrors = {};
     const values: IValues = {};
     this.state = {
       errors,
-      values
+      values,
+      placeholderTel
     };
   }
 
@@ -198,8 +199,8 @@ let lengthValue:number =  values[fieldName].split(' ').length
 if(lengthValue !== 2){
   return "Enter first and last name through one space"
 }
-let lengthValue0:number = values[fieldName].split(' ')[0].length;
-let lengthValue1:number = values[fieldName].split(' ')[1].length;
+let lengthValue0:number = values[fieldName].split(' ')[0].trim().length;
+let lengthValue1:number = values[fieldName].split(' ')[1].trim().length;
 if(lengthValue0 < 3 || lengthValue0 > 30 || lengthValue1 < 3 || lengthValue1 > 30 ) {
   return " This is too short or too long name"
 }
@@ -221,14 +222,17 @@ return ""
 * param {string} fieldName - The field to validate
 * returns {string} - The error message
 */
-export const isEmail = (values: IValues, fieldName: string): string =>
+export const isEmail = (values: IValues, fieldName: string): string => 
+ 
  values[fieldName] &&
- values[fieldName].search(
-   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
- )
+ values[fieldName].search(/^.+@.+\..+$/igm)
+  /* /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/*/
+ 
    ? "This must be in a valid email format"
-   : "";
+   : "";  
 
+
+  
 /**
 * Validates whether a field is within a certain amount of characters
 * param {IValues} values - All the field values in the form
@@ -242,9 +246,22 @@ export const maxLength = (
  minLength: number,
  length: number
 ): string => {
+  if  ( values[fieldName] === undefined ||
+    values[fieldName] === null ||
+    values[fieldName] === "") {
+      return  "This must be filled" 
+    }
   if((values[fieldName] && values[fieldName].length > length) || (values[fieldName] && values[fieldName].length < minLength)){
     return `This  must be between ${minLength} and ${length}  characters `
   }
   else return ""
 }
  
+
+export const isTel = (values: IValues, fieldName: string): string =>  
+    (values[fieldName] && values[fieldName].length < 15) ? "This must be in a valid tel format" :  ""
+
+
+
+
+

@@ -1,15 +1,17 @@
 
 /* The available editors for the field */
-type Editor = "textbox" | "multilinetextbox" | "dropdown";
+type Editor = "textbox" | "telbox"| "multilinetextbox" | "dropdown";
 
 export interface IValidation {
   rule: (values: IValues, fieldName: string, minLength: number, args: any) => string;
   minLength?: number;
-  args?: any;
+   args?: any;
+  rule2?: (values: IValues, fieldName: string, minLength: number, args: any) => string;
 }
 
 export interface IFieldProps {  
   id: string;/* The unique field name */
+  placeholderTel?: string;
   label?: string;  /* The label text for the field */
   editor?: Editor;  /* The editor for the field */
   options?: string[]; /* The drop down items for the field */
@@ -49,6 +51,7 @@ export interface IFormProps {
   
   export interface IFormState {
    values: IValues;  
-    errors: IErrors; 
+    errors: IErrors;
+    placeholderTel: string; 
    submitSuccess?: boolean;  
   }
