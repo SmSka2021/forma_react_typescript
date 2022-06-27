@@ -3,7 +3,8 @@
 type Editor = "textbox" | "multilinetextbox" | "dropdown";
 
 export interface IValidation {
-  rule: (values: IValues, fieldName: string, args: any) => string;
+  rule: (values: IValues, fieldName: string, minLength: number, args: any) => string;
+  minLength?: number;
   args?: any;
 }
 

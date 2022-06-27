@@ -88,6 +88,7 @@ private setValues = (values: IValues) => {
     newError = this.props.fields[fieldName].validation!.rule(
       this.state.values,
       fieldName,
+      this.props.fields[fieldName].validation!.minLength,
       this.props.fields[fieldName].validation!.args
     );
   }
@@ -195,7 +196,7 @@ private setValues = (values: IValues) => {
 let lengthValue:number =  values[fieldName].split(' ').length
 
 if(lengthValue !== 2){
-  return "Enter first and last name"
+  return "Enter first and last name through one space"
 }
 let lengthValue0:number = values[fieldName].split(' ')[0].length;
 let lengthValue1:number = values[fieldName].split(' ')[1].length;
@@ -207,7 +208,7 @@ if(values[fieldName].split(' ').filter(el => el.length < 3 || el.length > 30)) {
   return "check first and last name"
 }*/
 if(values[fieldName].search(/^[a-zA-Z]+\s+[a-zA-Z]*$/ )) {
- return "This must be in a valid  format"
+ return "This must be only latin letters"
 }
 return ""  
 
@@ -238,8 +239,12 @@ export const isEmail = (values: IValues, fieldName: string): string =>
 export const maxLength = (
  values: IValues,
  fieldName: string,
+ minLength: number,
  length: number
-): string =>
- values[fieldName] && values[fieldName].length > length
-   ? `This can not exceed ${length} characters`
-   : "";
+): string => {
+  if((values[fieldName] && values[fieldName].length > length) || (values[fieldName] && values[fieldName].length < minLength)){
+    return `This  must be between ${minLength} and ${length}  characters `
+  }
+  else return ""
+}
+ 

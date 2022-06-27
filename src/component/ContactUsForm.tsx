@@ -28,7 +28,7 @@ export const ContactUsForm: React.FunctionComponent = () => {
       id: "notes",
       label: "Notes",
       editor: "multilinetextbox",
-      validation: { rule: maxLength, args: 300 }
+      validation: { rule: maxLength, minLength: 10, args: 300 }
     }
   };
   return (

@@ -1,5 +1,5 @@
 
-import { IValues } from './Form';
+
 
 
 
@@ -9,7 +9,7 @@ import { IValues } from './Form';
  * param {string} fieldName - The field to validate
  * returns {string} - The error message
  */
- export const required = (values: IValues, fieldName: string): string =>
+/*s export const required = (values: IValues, fieldName: string): string =>
  values[fieldName] === undefined ||
  values[fieldName] === null ||
  values[fieldName] === ""
@@ -22,7 +22,7 @@ import { IValues } from './Form';
 * param {string} fieldName - The field to validate
 * returns {string} - The error message
 */
-export const isEmail = (values: IValues, fieldName: string): string =>
+/*export const isEmail = (values: IValues, fieldName: string): string =>
  values[fieldName] &&
  values[fieldName].search(
    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -37,7 +37,7 @@ export const isEmail = (values: IValues, fieldName: string): string =>
 * param {number} length - The maximum number of characters
 * returns {string} - The error message
 */
-export const maxLength = (
+/*export const maxLength = (
  values: IValues,
  fieldName: string,
  length: number,
@@ -49,4 +49,4 @@ export const maxLength = (
   
   
   
-
+*/
